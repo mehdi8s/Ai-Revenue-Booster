@@ -42,22 +42,6 @@
                     <span class="lang-option" data-lang="en">EN</span>
                 </button>
 
-                <!-- AI Chat Toggle (Navbar) -->
-                <button id="aiChatToggle" class="ai-chat-toggle-nav" onclick="toggleAiChat()" aria-label="AI Asistan">
-                    <svg class="ai-chat-icon-open" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10a10 10 0 0 1-10-10C2 6.48 6.48 2 12 2z" />
-                        <path d="M8 12h.01M12 12h.01M16 12h.01" />
-                    </svg>
-                    <svg class="ai-chat-icon-close" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                    <span class="ai-chat-toggle-label" data-tr="AI'ya Sor" data-en="Ask AI">AI'ya Sor</span>
-                </button>
 
                 <!-- Theme Toggle -->
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
@@ -255,16 +239,6 @@
                                 <span class="tag">AI Agent</span>
                                 <span class="tag">Langflow</span>
                                 <span class="tag">n8n</span>
-                            </div>
-                            <div class="project-links">
-                                <button class="project-link" id="apiAccessBtn" onclick="copyApiCode()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                    </svg>
-                                    <span data-tr="API Erişim Kodu" data-en="API Access">API Erişim Kodu</span>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -554,53 +528,44 @@
                     <!-- Certificate Card 3 -->
                     <div class="certificate-card">
 
-    <div class="certificate-image">
-        <img src="assets/images/s3.png" alt="Machine Learning Certificate">
-    </div>
+                        <div class="certificate-image">
+                            <img src="assets/images/s3.png" alt="Machine Learning Certificate">
+                        </div>
 
-    <div class="certificate-content">
+                        <div class="certificate-content">
 
-        <h3 class="certificate-title"
-            data-tr="Makine Öğrenmesi"
-            data-en="Machine Learning">
-            Makine Öğrenmesi
-        </h3>
+                            <h3 class="certificate-title" data-tr="Makine Öğrenmesi" data-en="Machine Learning">
+                                Makine Öğrenmesi
+                            </h3>
 
-        <p class="certificate-issuer">
-            TÜRKİYE CUMHURİYETİ CUMHURBAŞKANLIĞI DİJİTAL DÖNÜŞÜM OFİSİ
-        </p>
+                            <p class="certificate-issuer">
+                                TÜRKİYE CUMHURİYETİ CUMHURBAŞKANLIĞI DİJİTAL DÖNÜŞÜM OFİSİ
+                            </p>
 
-        <p class="certificate-date">
-            May 2024
-        </p>
+                            <p class="certificate-date">
+                                May 2024
+                            </p>
 
-        <button class="certificate-link"
-            onclick="openCertModal('assets/images/S3.png', 'Makine Öğrenmesi')"
-            data-tr="Görüntüle"
-            data-en="View">
+                            <button class="certificate-link"
+                                onclick="openCertModal('assets/images/S3.png', 'Makine Öğrenmesi')" data-tr="Görüntüle"
+                                data-en="View">
 
-            <svg xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
 
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                <circle cx="12" cy="12" r="3"/>
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
 
-            </svg>
+                                </svg>
 
-            Görüntüle
+                                Görüntüle
 
-        </button>
+                            </button>
 
-    </div>
+                        </div>
 
-</div>
+                    </div>
 
                     <!-- Certificate Card 4 -->
                     <div class="certificate-card">
@@ -869,87 +834,72 @@
         <div class="container">
             <h2 class="section-title" data-tr="Yetenekler & Teknolojiler" data-en="Skills & Technologies">Yetenekler &
                 Teknolojiler</h2>
+            <p class="section-subtitle"
+                data-tr="Projelerimde ve sertifika çalışmalarımda aktif olarak kullandığım teknoloji yetkinlikleri"
+                data-en="Technology competencies I actively use across my projects and certification work">
+                Projelerimde ve sertifika çalışmalarımda aktif olarak kullandığım teknoloji yetkinlikleri
+            </p>
 
             <div class="skills-categories">
-                <!-- Programming Languages -->
                 <div class="skill-category">
-                    <h3 class="category-title" data-tr="Programlama Dilleri" data-en="Programming Languages">Programlama
-                        Dilleri</h3>
-                    <div class="skills-list">
-                        <!-- TODO: Add/remove skills as needed -->
-                        <div class="skill-item">
-                            <span class="skill-name">Python</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">JavaScript</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Java</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="category-title" data-tr="Temel Teknik Yetkinlikler" data-en="Core Technical Skills">
+                        Temel Teknik Yetkinlikler
+                    </h3>
+                    <ul class="skills-list professional-list">
+                        <li class="skill-name">Python, JavaScript, Java (OOP), HTML5, CSS3</li>
+                        <li class="skill-name" data-tr="Temiz kod, modüler geliştirme ve bakım odaklı yapı"
+                            data-en="Clean code, modular development, and maintainable architecture">
+                            Temiz kod, modüler geliştirme ve bakım odaklı yapı
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- AI & ML -->
                 <div class="skill-category">
-                    <h3 class="category-title" data-tr="Yapay Zeka & Makine Öğrenmesi" data-en="AI & Machine Learning">
-                        Yapay Zeka & Makine Öğrenmesi</h3>
-                    <div class="skills-list">
-                        <!-- TODO: Add/remove skills as needed -->
-                        <div class="skill-item">
-                            <span class="skill-name">TensorFlow</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">PyTorch</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Scikit-learn</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="category-title" data-tr="AI / ML Yetkinlikleri" data-en="AI / ML Competencies">
+                        AI / ML Yetkinlikleri
+                    </h3>
+                    <ul class="skills-list professional-list">
+                        <li class="skill-name">TensorFlow, PyTorch, Scikit-learn</li>
+                        <li class="skill-name">XGBoost, Optuna, Pandas, SHAP, LIME</li>
+                        <li class="skill-name"
+                            data-tr="Tahminleme, model optimizasyonu ve açıklanabilirlik (explainability) uygulamaları"
+                            data-en="Hands-on experience in forecasting, model optimization, and explainability">
+                            Tahminleme, model optimizasyonu ve açıklanabilirlik (explainability) uygulamaları
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- Tools & Frameworks -->
                 <div class="skill-category">
-                    <h3 class="category-title" data-tr="Araçlar & Framework'ler" data-en="Tools & Frameworks">Araçlar &
-                        Framework'ler</h3>
-                    <div class="skills-list">
-                        <!-- TODO: Add/remove skills as needed -->
-                        <div class="skill-item">
-                            <span class="skill-name">Git</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Docker</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">SQL</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="category-title" data-tr="Veri ve Platform Teknolojileri"
+                        data-en="Data & Platform Technologies">
+                        Veri ve Platform Teknolojileri
+                    </h3>
+                    <ul class="skills-list professional-list">
+                        <li class="skill-name">Kafka, Spark Streaming, Flask, ASP.NET Core MVC</li>
+                        <li class="skill-name">Langflow, n8n, MySQL, SQL Server, Git, GitHub, Docker</li>
+                        <li class="skill-name"
+                            data-tr="Gerçek zamanlı veri işleme, API geliştirme ve uçtan uca proje teslimi"
+                            data-en="Real-time data processing, API development, and end-to-end project delivery">
+                            Gerçek zamanlı veri işleme, API geliştirme ve uçtan uca proje teslimi
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title" data-tr="Profesyonel İletişim" data-en="Professional Communication">
+                        Profesyonel İletişim
+                    </h3>
+                    <ul class="skills-list professional-list">
+                        <li class="skill-name" data-tr="İngilizce: Upper-Intermediate (B2)"
+                            data-en="English: Upper-Intermediate (B2)">
+                            İngilizce: Upper-Intermediate (B2)
+                        </li>
+                        <li class="skill-name"
+                            data-tr="Teknik dokümantasyon, ekip içi koordinasyon ve müşteri odaklı iletişim"
+                            data-en="Technical documentation, team collaboration, and client-oriented communication">
+                            Teknik dokümantasyon, ekip içi koordinasyon ve müşteri odaklı iletişim
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1102,25 +1052,6 @@
         </div>
     </footer>
 
-    <!-- Copy toast notification -->
-    <div id="copyToast" style="
-        display:none;
-        position:fixed;
-        bottom:32px;
-        left:50%;
-        transform:translateX(-50%);
-        background:var(--accent-primary,#6c63ff);
-        color:#fff;
-        padding:10px 24px;
-        border-radius:8px;
-        font-size:0.95rem;
-        font-family:inherit;
-        box-shadow:0 4px 20px rgba(0,0,0,0.3);
-        z-index:9999;
-        pointer-events:none;
-        transition:opacity 0.3s;
-    ">✓ Kod kopyalandı!</div>
-
     <!-- Certificate Lightbox Modal -->
     <div id="certModal" class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
         <div class="cert-modal-backdrop" onclick="closeCertModal()"></div>
@@ -1161,107 +1092,9 @@
             </div>
         </div>
     </div>
-    <!-- ============================
-         AI Chat Widget
-         ============================ -->
-    <div id="aiChatWidget" class="ai-chat-widget">
-
-        <!-- Chat Window -->
-        <div id="aiChatWindow" class="ai-chat-window" aria-hidden="true">
-
-            <!-- Header -->
-            <div class="ai-chat-header">
-                <div class="ai-chat-header-avatar">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2">
-                        <path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10a10 10 0 0 1-10-10C2 6.48 6.48 2 12 2z" />
-                        <path d="M8 12h.01M12 12h.01M16 12h.01" />
-                    </svg>
-                </div>
-                <div class="ai-chat-header-info">
-                    <h4 class="ai-chat-header-title" data-tr="Mahdi AI Asistanı" data-en="Mahdi AI Assistant">Mahdi AI
-                        Asistanı</h4>
-                    <div class="ai-chat-header-status">
-                        <span class="ai-status-dot"></span>
-                        <span data-tr="Çevrimiçi · Gemini ile güçlendirildi"
-                            data-en="Online · Powered by Gemini">Çevrimiçi · Gemini ile güçlendirildi</span>
-                    </div>
-                </div>
-                <button class="ai-chat-close-btn" onclick="toggleAiChat()" aria-label="Kapat">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Messages -->
-            <div id="aiChatMessages" class="ai-chat-messages">
-                <!-- Welcome message injected by JS -->
-            </div>
-
-            <!-- Suggested Questions -->
-            <div id="aiSuggestions" class="ai-chat-suggestions">
-                <button class="ai-suggestion-chip" onclick="sendAiSuggestion(this)"
-                    data-tr="Projelerin hakkında bilgi ver" data-en="Tell me about your projects">Projelerin hakkında
-                    bilgi ver</button>
-                <button class="ai-suggestion-chip" onclick="sendAiSuggestion(this)"
-                    data-tr="Hangi teknolojileri kullanıyorsun?" data-en="What technologies do you use?">Hangi
-                    teknolojileri kullanıyorsun?</button>
-                <button class="ai-suggestion-chip" onclick="sendAiSuggestion(this)"
-                    data-tr="İletişime nasıl geçebilirim?" data-en="How can I contact you?">İletişime nasıl
-                    geçebilirim?</button>
-            </div>
-
-            <!-- Input Area -->
-            <div class="ai-chat-input-area">
-                <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="Mahdi hakkında bir şey sorun…"
-                    data-placeholder-tr="Mahdi hakkında bir şey sorun…" data-placeholder-en="Ask something about Mahdi…"
-                    autocomplete="off" onkeydown="if(event.key==='Enter')sendAiMessage()">
-                <button id="aiSendBtn" class="ai-send-btn" onclick="sendAiMessage()" aria-label="Gönder">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="22" y1="2" x2="11" y2="13" />
-                        <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                    </svg>
-                </button>
-            </div>
-
-            <p class="ai-chat-footer" data-tr="Gemini AI · Yalnızca Mahdi hakkında sorular için"
-                data-en="Gemini AI · For questions about Mahdi only">
-                Gemini AI · Yalnızca Mahdi hakkında sorular için
-            </p>
-        </div>
-    </div>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
-    <script>
-        function copyApiCode() {
-            var code = `import requests\nimport os\nimport uuid\n\n\n# The complete API endpoint URL for this flow\nurl = "https://aws-us-east-2.langflow.datastax.com/lf/6a1d5c28-a088-45ce-b88b-52497a06b438/api/v1/run/6d27ca8a-7a25-45df-a14c-3f34057308c9"\n\n# Request payload configuration\npayload = {\n    "output_type": "chat",\n    "input_type": "text",\n    "input_value": "hello world!"\n}\npayload["session_id"] = str(uuid.uuid4())\n\nheaders = {\n    "X-DataStax-Current-Org": "8bf11dd1-b1fc-47f9-bc35-f40ed9f2b701", \n    "Authorization": "Bearer <YOUR_APPLICATION_TOKEN>",\n    "Content-Type": "application/json", \n    "Accept": "application/json",\n}\n\ntry:\n    # Send API request\n    response = requests.request("POST", url, json=payload, headers=headers)\n    response.raise_for_status()  # Raise exception for bad status codes\n\n    # Print response\n    print(response.text)\n\nexcept requests.exceptions.RequestException as e:\n    print(f"Error making API request: {e}")\nexcept ValueError as e:\n    print(f"Error parsing response: {e}")\n`;
-            navigator.clipboard.writeText(code).then(function () {
-                var toast = document.getElementById('copyToast');
-                toast.style.display = 'block';
-                toast.style.opacity = '1';
-                setTimeout(function () {
-                    toast.style.opacity = '0';
-                    setTimeout(function () { toast.style.display = 'none'; toast.style.opacity = '1'; }, 300);
-                }, 2000);
-            }).catch(function () {
-                // Fallback for older browsers
-                var ta = document.createElement('textarea');
-                ta.value = code;
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-                document.body.removeChild(ta);
-                var toast = document.getElementById('copyToast');
-                toast.style.display = 'block';
-                setTimeout(function () { toast.style.display = 'none'; }, 2000);
-            });
-        }
-    </script>
 </body>
 
 </html>
