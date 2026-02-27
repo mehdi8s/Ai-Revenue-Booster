@@ -37,7 +37,10 @@ class LanguageManager {
         document.querySelectorAll('[data-tr][data-en]').forEach(element => {
             const text = element.dataset[lang];
             if (text) {
-                element.textContent = text;
+                // Skip elements that contain child elements (e.g. buttons with SVG icons)
+                if (element.children.length === 0) {
+                    element.textContent = text;
+                }
             }
         });
 
@@ -721,3 +724,333 @@ if (typeof module !== 'undefined' && module.exports) {
         ContactForm
     };
 }
+
+// ===================================
+// Certificate Lightbox Modal
+// ===================================
+function openCertModal(imgSrc, title) {
+    const modal = document.getElementById('certModal');
+    const modalImg = document.getElementById('certModalImg');
+    const modalTitle = document.getElementById('certModalTitle');
+    if (!modal || !modalImg || !modalTitle) return;
+
+    modalImg.src = imgSrc;
+    modalImg.alt = title;
+    modalTitle.textContent = title;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Close on Escape key
+    document.addEventListener('keydown', _certModalKeyHandler);
+}
+
+function closeCertModal() {
+    const modal = document.getElementById('certModal');
+    if (!modal) return;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', _certModalKeyHandler);
+
+    // Clear src after animation ends
+    setTimeout(() => {
+        const modalImg = document.getElementById('certModalImg');
+        if (modalImg) modalImg.src = '';
+    }, 350);
+}
+
+function _certModalKeyHandler(e) {
+    if (e.key === 'Escape') closeCertModal();
+}
+
+// ===================================
+// Video Lightbox Modal
+// ===================================
+function openVideoModal(videoSrc, title) {
+    const modal = document.getElementById('videoModal');
+    const player = document.getElementById('videoModalPlayer');
+    const titleEl = document.getElementById('videoModalTitle');
+    if (!modal || !player || !titleEl) return;
+
+    player.src = videoSrc;
+    titleEl.textContent = title;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Try to play
+    player.load();
+    player.play().catch(() => { });
+
+    document.addEventListener('keydown', _videoModalKeyHandler);
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const player = document.getElementById('videoModalPlayer');
+    if (!modal) return;
+
+    if (player) {
+        player.pause();
+        player.currentTime = 0;
+    }
+
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', _videoModalKeyHandler);
+
+    // Clear src after animation ends
+    setTimeout(() => {
+        if (player) player.src = '';
+    }, 350);
+}
+
+function _videoModalKeyHandler(e) {
+    if (e.key === 'Escape') closeVideoModal();
+}
+
+// =============================================
+// AI Chat Widget — Gemini (via local proxy)
+// =============================================
+// API anahtarı server.py dosyasında güvenli şekilde saklanır.
+const AI_SYSTEM_PROMPT = `You are a professional AI assistant representing Mahdi Shahrouei's portfolio website. Your ONLY role is to answer questions about Mahdi Shahrouei professionally, accurately, and helpfully.
+
+IMPORTANT RULES:
+- Always detect and respond in the same language the user writes in (Turkish or English).
+- Keep responses concise, professional, and friendly — like a polished recruiter or the person himself.
+- If a question is completely unrelated to Mahdi, politely redirect: "I'm here to help you learn about Mahdi Shahrouei. Feel free to ask anything about his background, projects, or skills!"
+- Never fabricate information not listed below.
+- Format answers clearly; use bullet points when listing multiple items.
+
+=== ABOUT MAHDI SHAHROUEI ===
+Full Name: Mahdi Shahrouei
+Nationality: Iranian, currently in Turkey
+Education: Computer Engineering — Sakarya University (started 2022)
+Core Focus: Artificial Intelligence, Data Science, Machine Learning, Deep Learning, AI Agents
+
+Personal Summary:
+Mahdi sees Artificial Intelligence not merely as an academic discipline, but as a strategic tool for solving real-world problems. His goal is to build scalable, value-driven solutions using AI and intelligent agent systems. He also has hands-on experience in sponsorship coordination, e-commerce, and international trade — giving him a broad analytical and business perspective.
+
+Languages: Turkish, English, Persian (Farsi)
+
+=== PROJECTS (7 Projects) ===
+1. IntraDia — AI-Powered Foreign Trade Platform
+   Tools: Python, TensorFlow, LangFlow, Pandas
+   Description: An AI-driven export decision support system that speeds up costly foreign trade processes. Includes meeting summarization, market analysis, and target market identification using automation and data-driven methods.
+
+2. Meeting AI Agent — Audio Summarization & Reporting Agent
+   Tools: AI Agents, Langflow, n8n
+   Description: Automatically summarizes, stores, and reports audio recordings from business meetings and trade fairs.
+
+3. Big Data Real-Time Salary Analytics Pipeline
+   Tools: Apache Kafka, Spark Streaming, Flask, MySQL
+   GitHub: https://github.com/mehdi8s/Big-Data-Real-Time-Salary-Analytics-Pipeline
+   Description: A real-time pipeline processing 20,000+ salary records. Results visualized via a Flask dashboard.
+
+4. Flight Ticket Price Prediction
+   Tools: XGBoost, Random Forest, Scikit-learn, Optuna, SHAP, LIME
+   GitHub: https://github.com/mehdi8s/Airline-Flight-Price-Prediction-Machine-learning-Project-
+   Description: ML models trained on 300,000 flight records to predict ticket prices, with explainability via SHAP and LIME.
+
+5. IoT Smart Home Automation System
+   Tools: MediaPipe, OpenCV, ESP8266 (NodeMCU), Firebase Realtime Database
+   Description: Detects hand gestures using computer vision and controls home devices via ESP8266 microcontrollers with Firebase for real-time monitoring.
+
+6. AI-Powered Hairstyle & Color Recommendation Web App
+   Tools: TensorFlow, PyTorch, ASP.NET Core 8 MVC, Microsoft SQL Server
+   GitHub: https://github.com/mehdi8s/AI-Powered-Hairstyle-and-Color-Recommendation-Web-Application
+   Description: Analyzes user-uploaded photos with AI to recommend hairstyles and colors based on facial features.
+
+7. Hospital Database Management System
+   Tools: PostgreSQL, Relational Database Design
+   GitHub: https://github.com/mehdi8s/hospital-database-management-system-project
+   Description: Relational DB for managing hospital staff, salaries, shifts, and specializations. Includes stored procedures, triggers, and functions.
+
+=== TECHNICAL SKILLS ===
+Programming Languages: Python (90%), JavaScript (75%), Java (70%)
+AI & ML: TensorFlow (85%), PyTorch (80%), Scikit-learn (85%)
+Tools & Frameworks: Git (85%), Docker (70%), SQL (75%)
+Other: LangFlow, n8n, Apache Kafka, Spark Streaming, ASP.NET Core MVC, Firebase, MediaPipe, OpenCV, Flask
+
+=== CERTIFICATES ===
+- CS50X: Introduction to Computer Science — Harvard University (Sep 2023)
+- Python for Data Science, AI & Development — Coursera / IBM (Dec 2024)
+- Machine Learning — Digital Transformation Office of Turkey (May 2024)
+- Artificial Intelligence From A to Z — Emir Kabir University of Technology (Aug 2024)
+- Applied Foreign Trade Training — Istanbul Commerce University / Genç MÜSİAD (Feb 2025)
+- English Pre-Intermediate Certificate — İSMEK (July 2023)
+- Deep Learning for Computer Vision — Digital Transformation Office of Turkey (Aug 2024)
+- Tools for Data Science — Coursera / IBM (Jun 2024)
+- Data Science Methodology — Coursera / IBM (Jul 2024)
+- What is Data Science? — Coursera / IBM (Apr 2024)
+- EF SET English Certificate B2 — EF SET (Jun 2024)
+- Export Processes and Government Support Training — Ministry of Commerce of Turkey (Apr 2024)
+
+=== CONTACT INFORMATION ===
+Email: mahdishahrouei@gmail.com
+LinkedIn: https://www.linkedin.com/in/mahdi-shahrouei/
+GitHub: https://github.com/mehdi8s
+Phone / WhatsApp: +90 552 479 87 90
+
+=== CAREER GOAL ===
+Mahdi is actively seeking opportunities in Artificial Intelligence, Data Science, and Software Engineering. He is motivated by building intelligent systems that integrate technology with real business processes and create measurable value.`;
+
+let aiChatHistory = [];
+let aiChatIsOpen = false;
+let aiChatInitialized = false;
+
+function toggleAiChat() {
+    const widget = document.getElementById('aiChatWidget');
+    const chatWindow = document.getElementById('aiChatWindow');
+    aiChatIsOpen = !aiChatIsOpen;
+    widget.classList.toggle('open', aiChatIsOpen);
+    chatWindow.setAttribute('aria-hidden', String(!aiChatIsOpen));
+
+    if (aiChatIsOpen && !aiChatInitialized) {
+        aiChatInitialized = true;
+        _aiAddWelcomeMessage();
+    }
+    if (aiChatIsOpen) {
+        setTimeout(() => document.getElementById('aiChatInput')?.focus(), 350);
+    }
+}
+
+function _aiAddWelcomeMessage() {
+    const lang = localStorage.getItem('portfolio-lang') || 'tr';
+    const msg = lang === 'en'
+        ? '👋 Hi! I\'m Mahdi\'s AI assistant. Ask me anything about his background, projects, skills, or how to get in touch!'
+        : '👋 Merhaba! Ben Mahdi\'nin AI asistanıyım. Eğitimi, projeleri, yetenekleri veya iletişim bilgileri hakkında her şeyi sorabilirsiniz!';
+    _aiRenderMessage('bot', msg);
+}
+
+function sendAiSuggestion(btn) {
+    const lang = localStorage.getItem('portfolio-lang') || 'tr';
+    const text = (lang === 'en' ? btn.dataset.en : btn.dataset.tr) || btn.textContent.trim();
+    const suggestions = document.getElementById('aiSuggestions');
+    if (suggestions) suggestions.style.display = 'none';
+    _processAiMessage(text);
+}
+
+function sendAiMessage() {
+    const input = document.getElementById('aiChatInput');
+    const text = input?.value.trim();
+    if (!text) return;
+    input.value = '';
+    const suggestions = document.getElementById('aiSuggestions');
+    if (suggestions) suggestions.style.display = 'none';
+    _processAiMessage(text);
+}
+
+async function _processAiMessage(userText) {
+    _aiRenderMessage('user', userText);
+    aiChatHistory.push({ role: 'user', content: userText });
+    const typingId = _aiShowTyping();
+    _aiSetInputEnabled(false);
+
+    try {
+
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                messages: [
+                    { role: 'system', content: AI_SYSTEM_PROMPT },
+                    ...aiChatHistory
+                ],
+                temperature: 0.75,
+                max_tokens: 512
+            })
+        });
+
+        if (!response.ok) {
+            const errJson = await response.json().catch(() => ({}));
+            throw new Error(errJson?.error?.message || `HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        const replyText = data?.choices?.[0]?.message?.content || '';
+        if (!replyText) throw new Error('EMPTY');
+
+        aiChatHistory.push({ role: 'assistant', content: replyText });
+        _aiRemoveTyping(typingId);
+        _aiRenderMessage('bot', replyText);
+
+    } catch (err) {
+        _aiRemoveTyping(typingId);
+        const lang = localStorage.getItem('portfolio-lang') || 'tr';
+        let errorMsg;
+        if (err instanceof TypeError && err.message.toLowerCase().includes('fetch')) {
+            console.error('Gemini proxy fetch error:', err);
+            errorMsg = lang === 'en'
+                ? '⚠️ Network error. Make sure the local server (server.py) is running.'
+                : '⚠️ Ağ hatası. Lütfen yerel sunucunun (server.py) çalıştığından emin olun.';
+        } else if (err.message && (err.message.includes('quota') || err.message.includes('rate limit') || err.message.includes('429'))) {
+            console.warn('Gemini rate limit / quota (429):', err.message);
+            errorMsg = lang === 'en'
+                ? '⏳ The AI service is temporarily rate-limited. Please wait a moment and try again.'
+                : '⏳ AI servisi geçici olarak kota limitine ulaştı. Lütfen biraz bekleyip tekrar deneyin.';
+        } else {
+            console.error('Gemini proxy error:', err);
+            errorMsg = lang === 'en'
+                ? 'Sorry, I couldn\'t connect to the AI service right now. Please try again shortly.'
+                : 'Üzgünüm, AI servisine şu an bağlanılamadı. Lütfen biraz sonra tekrar deneyin.';
+        }
+        aiChatHistory.pop();
+        _aiRenderMessage('bot', errorMsg);
+    } finally {
+        _aiSetInputEnabled(true);
+        document.getElementById('aiChatInput')?.focus();
+    }
+}
+
+function _aiRenderMessage(role, text) {
+    const container = document.getElementById('aiChatMessages');
+    if (!container) return;
+
+    const msgEl = document.createElement('div');
+    msgEl.className = `ai-msg ${role}`;
+
+    const avatar = document.createElement('div');
+    avatar.className = 'ai-msg-avatar';
+    avatar.textContent = role === 'bot' ? 'AI' : '👤';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'ai-msg-bubble';
+    bubble.innerHTML = text
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/\n/g, '<br>');
+
+    msgEl.appendChild(avatar);
+    msgEl.appendChild(bubble);
+    container.appendChild(msgEl);
+    container.scrollTop = container.scrollHeight;
+}
+
+function _aiShowTyping() {
+    const container = document.getElementById('aiChatMessages');
+    if (!container) return null;
+    const id = 'typing-' + Date.now();
+    const el = document.createElement('div');
+    el.id = id;
+    el.className = 'ai-msg bot';
+    el.innerHTML = `<div class="ai-msg-avatar">AI</div><div class="ai-msg-bubble" style="padding:8px 14px;"><div class="ai-typing-indicator"><span></span><span></span><span></span></div></div>`;
+    container.appendChild(el);
+    container.scrollTop = container.scrollHeight;
+    return id;
+}
+
+function _aiRemoveTyping(id) {
+    if (id) document.getElementById(id)?.remove();
+}
+
+function _aiSetInputEnabled(enabled) {
+    const input = document.getElementById('aiChatInput');
+    const btn = document.getElementById('aiSendBtn');
+    if (input) input.disabled = !enabled;
+    if (btn) btn.disabled = !enabled;
+}
+
