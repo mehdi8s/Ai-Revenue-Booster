@@ -902,8 +902,10 @@ let aiChatInitialized = false;
 function toggleAiChat() {
     const widget = document.getElementById('aiChatWidget');
     const chatWindow = document.getElementById('aiChatWindow');
+    const navBtn = document.getElementById('aiChatToggle');
     aiChatIsOpen = !aiChatIsOpen;
     widget.classList.toggle('open', aiChatIsOpen);
+    if (navBtn) navBtn.classList.toggle('open', aiChatIsOpen);
     chatWindow.setAttribute('aria-hidden', String(!aiChatIsOpen));
 
     if (aiChatIsOpen && !aiChatInitialized) {
