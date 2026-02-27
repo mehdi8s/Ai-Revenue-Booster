@@ -209,11 +209,14 @@ class NavbarScroll {
 
     init() {
         window.addEventListener('scroll', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
             if (window.scrollY > 50) {
-                this.navbar.style.background = 'rgba(10, 10, 15, 0.95)';
+                this.navbar.style.background = isDark
+                    ? 'rgba(10, 10, 15, 0.97)'
+                    : 'rgba(255, 255, 255, 0.97)';
                 this.navbar.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
             } else {
-                this.navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+                this.navbar.style.background = '';
                 this.navbar.style.boxShadow = 'none';
             }
         });
@@ -497,7 +500,7 @@ class ProjectsCarousel {
         // Update dots on scroll
         this.grid.addEventListener('scroll', () => this.syncDots(), { passive: true });
 
-        // Mouse drag-to-scroll
+        // Mouse drag-to-scroll (desktop)
         this.grid.addEventListener('mousedown', (e) => {
             this.isDragging = true;
             this.startX = e.pageX - this.grid.offsetLeft;
@@ -514,6 +517,22 @@ class ProjectsCarousel {
             this.isDragging = false;
             this.grid.style.cursor = 'grab';
         });
+
+        // Touch drag-to-scroll (mobile)
+        this.grid.addEventListener('touchstart', (e) => {
+            this.isDragging = true;
+            this.startX = e.touches[0].pageX - this.grid.offsetLeft;
+            this.scrollStart = this.grid.scrollLeft;
+        }, { passive: true });
+        this.grid.addEventListener('touchmove', (e) => {
+            if (!this.isDragging) return;
+            const x = e.touches[0].pageX - this.grid.offsetLeft;
+            this.grid.scrollLeft = this.scrollStart - (x - this.startX);
+        }, { passive: true });
+        this.grid.addEventListener('touchend', () => {
+            this.isDragging = false;
+            this.syncDots();
+        }, { passive: true });
 
         // Keyboard navigation when section is focused
         document.addEventListener('keydown', (e) => {
@@ -581,6 +600,7 @@ class CertsCarousel {
 
         this.grid.addEventListener('scroll', () => this.syncDots(), { passive: true });
 
+        // Mouse drag (desktop)
         this.grid.addEventListener('mousedown', (e) => {
             this.isDragging = true;
             this.startX = e.pageX - this.grid.offsetLeft;
@@ -597,6 +617,22 @@ class CertsCarousel {
             this.isDragging = false;
             this.grid.style.cursor = 'grab';
         });
+
+        // Touch drag (mobile)
+        this.grid.addEventListener('touchstart', (e) => {
+            this.isDragging = true;
+            this.startX = e.touches[0].pageX - this.grid.offsetLeft;
+            this.scrollStart = this.grid.scrollLeft;
+        }, { passive: true });
+        this.grid.addEventListener('touchmove', (e) => {
+            if (!this.isDragging) return;
+            const x = e.touches[0].pageX - this.grid.offsetLeft;
+            this.grid.scrollLeft = this.scrollStart - (x - this.startX);
+        }, { passive: true });
+        this.grid.addEventListener('touchend', () => {
+            this.isDragging = false;
+            this.syncDots();
+        }, { passive: true });
     }
 
     scrollTo(index) {
