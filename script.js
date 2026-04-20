@@ -226,6 +226,7 @@ class NavbarScroll {
 class ContactForm {
     constructor() {
         this.form = document.getElementById('contactForm');
+        this.formspreeEndpoint = 'https://formspree.io/f/mqakoyal';
         this.init();
     }
 
@@ -243,12 +244,6 @@ class ContactForm {
     }
 
     async handleSubmit() {
-        // -------------------------------------------------------
-        // Web3Forms Access Key — get yours FREE at web3forms.com
-        // Enter mahdishahrouei@gmail.com there and paste the key:
-        const WEB3FORMS_ACCESS_KEY = '4d6ed46f-beff-4bd0-bdc7-08cfd7dd11e8';
-        // -------------------------------------------------------
-
         const submitBtn = this.form.querySelector('[type="submit"]');
         const originalText = submitBtn.textContent;
 
@@ -257,22 +252,23 @@ class ContactForm {
         submitBtn.textContent = '⏳ Gönderiliyor...';
 
         const formData = new FormData(this.form);
-        formData.append('access_key', WEB3FORMS_ACCESS_KEY);
-        formData.append('subject', `Portfolyo İletişim: ${formData.get('subject') || 'Yeni Mesaj'}`);
-        formData.append('from_name', formData.get('name') || 'Portfolyo Ziyaretçisi');
+        formData.append('_subject', `Portfolio Contact: ${formData.get('subject') || 'New Message'}`);
+        formData.append('form_type', 'portfolio_contact');
 
         try {
-            const response = await fetch('https://api.web3forms.com/submit', {
+            const response = await fetch(this.formspreeEndpoint, {
                 method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
                 body: formData
             });
-            const result = await response.json();
-
-            if (result.success) {
+            if (response.ok) {
                 this.showMessage('success');
                 this.form.reset();
             } else {
-                console.error('Web3Forms error:', result);
+                const errorResult = await response.json().catch(() => ({}));
+                console.error('Formspree error:', errorResult);
                 this.showMessage('error');
             }
         } catch (err) {
